@@ -1,0 +1,46 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: three-tier
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      imagePullSecrets:
+      - name: ecr-registry-secret
+      containers:
+      - name: backend
+        image: public.ecr.aws/r2o2j9y1/three-tier-backend:latest #  backend image from ECR
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8181
+        env:
+        - name: DATABASE_HOST
+          value: mangodb-svc # Service name of the database
+        - name: DATABASE_PORT
+          value: 27017 # Replace with your database port
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: mango-db
+              key: username
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mango-db
+              key: password

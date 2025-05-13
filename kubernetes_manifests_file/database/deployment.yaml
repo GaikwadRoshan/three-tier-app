@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: deployment
+metdata:
+  namespace: three-tier
+  name: mangodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mangodb
+  template:
+    metadata:
+      labels: 
+        app: mongodb
+
+    spec:
+      containers:
+      - name: mangodb-container
+        image: mongo:4.4.6
+        command:
+            - "numactl"
+            - "--interleave=all"
+            - "mongod"
+            - "--wiredTigerCacheSizeGB"
+            - "0.1"
+            - "--bind_ip"
+            - "0.0.0.0"
+        ports:
+        - containerPort: 27017 
+        env:
+          - name: MANGO-DB-ROOT-USERNAME
+            valuefrom: 
+              secretKeyRef:
+                name: mango-db
+                key: username
+          
+          - name: MANGO-DB-ROOT-PASSWORD
+            valuefrom: 
+              secretKeyRef:
+                name: mango-db
+                key: password
+    
