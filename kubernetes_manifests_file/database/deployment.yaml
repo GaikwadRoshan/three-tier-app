@@ -7,7 +7,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: mongodb
+      app: mongodb
   template:
     metadata:
       labels: 
