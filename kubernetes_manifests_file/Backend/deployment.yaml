@@ -31,9 +31,9 @@ spec:
         - containerPort: 8181
         env:
         - name: DATABASE_HOST
-          value: mangodb-svc # Service name of the database
+          value: "mangodb-svc" # Service name of the database
         - name: DATABASE_PORT
-          value: 27017 # Replace with your database port
+          value: "27017" # Replace with your database port
         - name: DATABASE_USER
           valueFrom:
             secretKeyRef:
