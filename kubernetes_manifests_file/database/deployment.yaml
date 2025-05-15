@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
-metdata:
+metadata:
   namespace: three-tier
   name: mangodb
 spec:
@@ -29,13 +29,13 @@ spec:
         - containerPort: 27017 
         env:
           - name: MANGO-DB-ROOT-USERNAME
-            valuefrom: 
+            valueFrom: 
               secretKeyRef:
                 name: mango-db
                 key: username
           
           - name: MANGO-DB-ROOT-PASSWORD
-            valuefrom: 
+            valueFrom: 
               secretKeyRef:
                 name: mango-db
                 key: password
