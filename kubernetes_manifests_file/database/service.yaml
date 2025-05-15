@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: three-tier
-  name: mangodb-svc
+  name: mongodb-svc
 spec:
   selector:
-    app: mangodb
+    app: mongodb
 
   ports:
-  - name: mangodb-svc
+  - name: mongodb-svc
     protocol: TCP
     port: 27017
     targetPort: 27017

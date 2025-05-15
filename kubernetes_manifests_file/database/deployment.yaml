@@ -2,12 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: three-tier
-  name: mangodb
+  name: mongodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: mangodb
+      name: mongodb
   template:
     metadata:
       labels: 
@@ -28,15 +28,15 @@ spec:
         ports:
         - containerPort: 27017 
         env:
-          - name: MANGO-DB-ROOT-USERNAME
+          - name: MONGO-DB-ROOT-USERNAME
             valueFrom: 
               secretKeyRef:
-                name: mango-db
+                name: mongodb
                 key: username
           
-          - name: MANGO-DB-ROOT-PASSWORD
+          - name: MONGO-DB-ROOT-PASSWORD
             valueFrom: 
               secretKeyRef:
-                name: mango-db
+                name: mongodb
                 key: password
     
