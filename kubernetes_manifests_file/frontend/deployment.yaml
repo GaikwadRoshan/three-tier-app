@@ -31,7 +31,7 @@ spec:
         - containerPort: 3000
         env:
         - name: BACKEND_URL
-          value: "http://backend.amanpathakdevops.study/api/tasks"  
+          value: "http://k8s-threetie-mainlb-1dd958d0ec-229107632.ap-south-1.elb.amazonaws.com/"  
 
 
     
