@@ -28,7 +28,7 @@ spec:
         image: public.ecr.aws/r2o2j9y1/three-tier-frontend:latest #  backend image from ECR
         imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - containerPort: 80
         env:
         - name: BACKEND_URL
           value: "http://k8s-threetie-mainlb-1dd958d0ec-229107632.ap-south-1.elb.amazonaws.com/"  
